@@ -1,19 +1,33 @@
 body{
 margin: 0;
 }
-div.Art-Box{
+div.Art-Box {
     height: 30vw;
     width: 100vw;
     background-color: #3f344a;
-    justify-content: center;/* Poner el texto al medio del div */
+    justify-content: space-between;
     align-items: center;
     display: flex;
+    padding: 0 20px;
 }
-div.caratula{
+
+div.caratula {
     height: 15vw;
     width: 15vw;
     background-color: #935f7e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; /* Agrega margen automático para centrar horizontalmente */
 }
+
+
+div.caratula img#cover{
+    height: 10vw;
+    width: 10vw;
+    border-style: none;
+}
+
 div.Controls-Box{
     height: 10vw;
     width: 100vw;
@@ -42,3 +56,12 @@ button.controls:hover {
     background: #e2a9c2;
     color: #fff !important;
   }
+
+div#llistamusica{
+    border-color: #3f344a;
+    color: #fff;
+    list-style: none;
+background-color: #3f344a;
+width: 20vw;
+height: 10vw;
+}

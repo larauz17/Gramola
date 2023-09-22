@@ -1,0 +1,16 @@
+[
+    {
+        "title":"Dancin",
+        "artist":"Aaron-Smith",
+        "url":"./src/Aaron-Smith-Dancin.mp3",
+        "cover":"./img/dancin.jpg"
+        
+    },
+    {
+        "title":"Lone Digger",
+        "artist":"Caravan Palace",
+        "url":"./src/Caravan-Palace-Lone-Digger.mp3",
+        "cover":"./img/lonedigger.png" 
+
+    }
+]

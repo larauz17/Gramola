@@ -1,0 +1,9 @@
+[
+    {
+        "title":"Back in Black",
+        "artist":"AC-DC",
+        "url":"./src/Back-In-Black.mp3",
+        "cover":"./img/backinblack.png"
+        
+    }
+]
