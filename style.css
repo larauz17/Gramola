@@ -1,31 +1,83 @@
 body{
-margin: 0;
-}
-div.Art-Box {
-    height: 30vw;
-    width: 100vw;
-    background-color: #3f344a;
-    justify-content: space-between;
+margin: 0;}
+
+.Nav {
+    
+    width: 100%;
+    height: 20vh;
+    background-color: #935f7e;
+    justify-content: center;
     align-items: center;
     display: flex;
-    padding: 0 20px;
+    flex-direction: row;
+
+  }
+  #playlist-list {
+    list-style: none; /* Elimina los marcadores de lista predeterminados */
+    padding: 0; /* Elimina el espacio de relleno predeterminado de la lista */
+    margin: 0; /* Elimina los márgenes predeterminados de la lista */
+
+  }
+  
+  #playlist-list li {
+    display: inline-block; /* Muestra las listas de reproducción en línea */
+    margin-right: 10px; /* Espacio entre las listas de reproducción */
+  }  
+div.Art-Box {
+  height: 470px;
+  width: 100%;
+  background-color: #3f344a;
+  display: flex;
+}
+#columna{
+  flex-direction: column;
+  height: 490px;
+  width: 50%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
 }
 
 div.caratula {
-    height: 15vw;
-    width: 15vw;
     background-color: #935f7e;
+    width: 200px;
+    height: 200px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin: 0 auto; /* Agrega margen automático para centrar horizontalmente */
-}
+    justify-content: center;
+  }
 
 
 div.caratula img#cover{
     height: 10vw;
     width: 10vw;
     border-style: none;
+    order:2;
+}
+div.informacion{
+    border:3px ridge #989c9d70;
+    
+    background-color:  #989c9d17;
+    border-radius:21px;
+    text-align: center; 
+
+}
+div.informacion-cancion{
+    display:inline-block;
+    margin:15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align:center; 
+    color: white;
+}
+div#volume-bar{
+    order: 3;
+    display: inline-flex;
+    text-align: center;
+}
+div#volume-bar input#duration-bar{
+    appearance: none;
+    height: 3px;
 }
 
 div.Controls-Box{
@@ -35,6 +87,8 @@ div.Controls-Box{
     justify-content: center;/* Poner el texto al medio del div */
     align-items: center;
     display: flex;
+    position: absolute;
+    bottom: 0;
 }
 
 button.controls{
@@ -61,7 +115,65 @@ div#llistamusica{
     border-color: #3f344a;
     color: #fff;
     list-style: none;
-background-color: #3f344a;
-width: 20vw;
-height: 10vw;
+    background-color: #3f344a;
+    width: 20vw;
+    height: 10vw;
 }
+
+
+ /* Resto de estilos CSS que ya tenías */
+
+/* Estilo para el contenedor de la lista de reproducción activa */
+#playlist-act {
+    margin-top: auto;
+    width: 350px; /* Ancho del contenedor (ajusta según tus preferencias) */
+    overflow-y: scroll; /* Agrega una barra de desplazamiento vertical */
+    background-color: #3f344a;
+/* Ancho de la barra de desplazamiento (puedes usar "auto" o "thin") */
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    margin: 20px;
+    height: 300px;
+
+  }
+  
+  
+  /* Estilo para la lista de canciones dentro de #playlist-act */
+  #playlist-act #song-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    margin: 10px;
+  }
+  
+  /* Estilo para cada elemento de la lista de canciones dentro de #playlist-act */
+  #playlist-act #song-list li.song-item {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border: 1px solid #b13376;
+    margin-bottom: 10px;
+    width: 310px;
+    border-radius: 10px;
+    background-color: #935f7e;
+  }
+  
+  /* Estilo para la imagen de la portada dentro de #playlist-act */
+  #playlist-act #song-list li.song-item img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }
+  
+  /* Estilo para el título de la canción dentro de #playlist-act */
+  #playlist-act #song-list li.song-item .title {
+    font-weight: bold;
+    color: #fff;
+  }
+  
+  /* Estilo para el artista de la canción dentro de #playlist-act */
+  #playlist-act #song-list li.song-item .artist {
+    color: #ffffff;
+    margin-left: 10px;
+  }
+  

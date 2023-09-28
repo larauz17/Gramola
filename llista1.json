@@ -1,16 +1,22 @@
-[
-    {
-        "title":"Dancin",
-        "artist":"Aaron-Smith",
-        "url":"./src/Aaron-Smith-Dancin.mp3",
-        "cover":"./img/dancin.jpg"
-        
-    },
-    {
-        "title":"Lone Digger",
-        "artist":"Caravan Palace",
-        "url":"./src/Caravan-Palace-Lone-Digger.mp3",
-        "cover":"./img/lonedigger.png" 
-
-    }
-]
+{
+    "name": "Pop",
+    "songs": [
+        {
+            "title":"Dancin",
+            "artist":"Aaron-Smith",
+            "url":"./src/Aaron-Smith-Dancin.mp3",
+            "cover":"./img/dancin.jpg"
+        },
+        {
+            "title":"Lone Digger",
+            "artist":"Caravan Palace",
+            "url":"./src/Caravan-Palace-Lone-Digger.mp3",
+            "cover":"./img/lonedigger.png" 
+        },
+        {
+            "title":"Summer in New York",
+            "artist":"Soffi Tukker",
+            "url":"./src/summerinnewyork.mp3",
+            "cover":"./img/summerinnewyork.jpg" 
+        } ]
+}

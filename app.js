@@ -1,15 +1,159 @@
-let pausebtn = document.getElementById("pause");
-let play = document.getElementById("play");
+let pausebtn = document.getElementById("play");
 let imgChange = document.getElementById("imgchange");
-var coverimg = document.getElementById("cover")
 var playorpause = true;
-let next = document.getElementById("next");
-const music = document.createElement("audio")
+const music = document.createElement("audio");
+const cover = document.getElementById("cover");
+const artista = document.getElementById("artista");
+const musicnme = document.getElementById("cancion");
+const songduration = document.getElementById("duration-song");
+const songdur= document.getElementById("tactual")
+let nextbtn = document.getElementById("next")
+let backbtn = document.getElementById("back")
+let randombtn = document.getElementById("random")
+var plstact=0; // playlist actual
+var mscact = 0;  //cancinon actual
+var plstlgt; //longitud de la lista actual
+let rs = 0; //random song 
+const durationBar = document.getElementById("duration-bar");
 
-var plst1 = document.getElementById("plst1")
-var plst2 = document.getElementById("plst2")
+let stopbtn = document.getElementById("stop");
+
+playsong(mscact,plstact); // se inicializa la gramola con la primera cancion de la primera lista
+
+
+music.addEventListener("timeupdate", function() {
+      //se crea la funcion de la barra de reproduccion
+    const currentTime = music.currentTime;          // se crea la variable para saber el momento actual de la cancion
+    const duration = music.duration;               // se mira la duracion
+    if (music.currentTime==music.duration){        // se hace la media para saber en que momentot esta
+        next();                                    //si la cancion ha terminado llama a la funcion next (cambio de cancion)
+    }
+    const progress = (currentTime / duration) * 100; //se actualiza la barra
+
+    durationBar.value = progress;
+
+    //ponemos el tiempo actual de la cancion
+    const tactual= music.currentTime;
+    const minutos = Math.floor(tactual / 60);
+    const segundos = Math.floor(tactual % 60);
+    const tactf =`${minutos}:${segundos < 10 ? '0' : ''}${segundos}`;
+songdur.textContent = tactf;
+
+});
+
+durationBar.addEventListener("click", function(event) {
+    const progressBar = event.target; 
+    const position = (event.clientX - progressBar.getBoundingClientRect().left) / progressBar.clientWidth;
+
+    music.currentTime = position * music.duration;
+});
+
+
+
+
+
 // funcion para poder pausar o reproducir musica (true es reproducir ) 
-pausebtn.onclick = function(){
+pausebtn.addEventListener("click",playpause)
+
+nextbtn.addEventListener("click",next)
+
+ 
+let listaplaylist = document.getElementById("playlist-list")
+
+
+
+const songList = document.getElementById("song-list");
+
+// Agregar un evento de clic a cada elemento de lista de reproducción
+
+
+musica.forEach((playlist, index) => {
+    const listItem = document.createElement("li"); // Crear un elemento de lista
+    const link = document.createElement("a");
+    link.textContent = playlist.name;
+
+    // Agregar un evento clic al nombre de la lista
+    link.addEventListener("click", () => {
+        // Obtener el número de canciones en la lista actual
+        const plstlgt = playlist.songs.length;
+
+        // Mostrar las canciones de la lista y establecer la lista actual
+        showSongs(playlist, index);
+
+        // Establecer la lista actual según el índice
+        plstact = index;
+
+        // Preparar la primera canción de la lista seleccionada
+        playsong(0, plstact);
+    });
+
+    listItem.appendChild(link);
+    playlist-list.appendChild(listItem); // Agregar el elemento de lista a la lista de reproducción
+});
+
+
+function showSongs(playlist, listIndex) {
+    // Limpiar la lista de canciones
+    songList.innerHTML = "";
+
+    // Iterar a través de las canciones y agregarlas a la lista
+    playlist.songs.forEach((song, index) => {
+        const listItem = document.createElement("li");
+        listItem.classList.add("song-item"); // Agrega una clase para el estilo CSS
+
+        // Crear una imagen
+        const songImage = document.createElement("img");
+        songImage.src = song.cover; // Asignar la URL de la imagen de la portada
+        songImage.alt = `${song.title} - ${song.artist}`; // Texto alternativo para la imagen
+        listItem.appendChild(songImage);
+
+        // Crear un div para el título
+        const titleDiv = document.createElement("div");
+        titleDiv.classList.add("title");
+        titleDiv.textContent = song.title;
+        listItem.appendChild(titleDiv);
+
+        // Crear un div para el artista
+        const artistDiv = document.createElement("div");
+        artistDiv.classList.add("artist");
+        artistDiv.textContent = song.artist;
+        listItem.appendChild(artistDiv);
+
+        // Agregar un evento de clic para mostrar información detallada
+        listItem.addEventListener("click", () => {
+            mscact = index;
+            plstact = listIndex;
+            playsong(mscact, plstact);
+        });
+
+        // Agregar el elemento de la lista completo a la lista de canciones
+        songList.appendChild(listItem);
+    });
+}
+
+// controles del reproductor
+function playsong(index,listIndex){
+    songdur.textContent="0:00"; 
+    const plist = musica[listIndex]; //se define en que playlist esta la cancion que se va a reproducir
+    const mscobj = plist.songs[index];  //se escoge la array que contiene la cancion
+    cover.src= mscobj.cover;
+    music.src =mscobj.url;
+    artista.textContent = mscobj.artist;
+    musicnme.textContent = mscobj.title;
+
+
+    music.addEventListener('loadedmetadata', () => {
+        
+        const dtot = music.duration;
+        const minut = Math.floor(dtot / 60);
+        const sec = Math.floor(dtot % 60);
+        const dtotal = `${minut}:${sec < 10 ? '0' : ''}${sec}`;
+        songduration.textContent = dtotal;
+      });
+
+};
+
+function playpause(){
     if (playorpause){
         imgChange.src = "./img/pauseb.png"
         playorpause = false;
@@ -18,67 +162,45 @@ pausebtn.onclick = function(){
         music.pause();
         imgChange.src = "./img/playb.png";
         playorpause = true;
+    };
+}
+
+stopbtn.addEventListener("click", function(){
+    music.pause();
+    music.currentTime = 0;
+    playorpause = false;
+    playpause();
+}
+)
+function next (){
+    mscact++;
+    if(mscact>plstlgt){
+        mscact=0;
     }
+    playsong(mscact,plstact); 
+    music.play();
 }
 
+randombtn.addEventListener("click",function(){
+    playorpause = true;
+    playpause();
 
-var lI = document.getElementById('llistamusica');
-
-
-
-
-
-var currentPlaylist;
-
-
-function loadAndShowPlaylist() {
-    // Limpia la lista de reproducción actual
-    llistamusica.innerHTML = '';
-    
-    // Crea una lista desordenada (ul)
-    var ul = document.createElement('ul');
-
-    // Recorre los elementos en la lista de reproducción actual y crea elementos de lista (li) para cada canción
-    currentPlaylist.forEach(function(song) {
-        var li = document.createElement('li');
-        li.innerHTML = '<strong>' + song.title + '</strong> - ' + song.artist;
-
-        // Agrega un evento de clic a cada elemento de la lista
-        li.addEventListener('click', function() {
-            selectedS = song
-            showSelectedSongDetails(song);
-        });
-
-        // Añade el elemento de lista a la lista desordenada
-        ul.appendChild(li);
-    });
- 
-    // Añade la lista desordenada al div de la lista de reproducción
-    llistamusica.appendChild(ul);
-
-    // Muestra la primera canción de la lista de reproducción actual (si existe)
-    if (currentPlaylist.length > 0) {
-        showSelectedSongDetails(currentPlaylist[0]);
+    var r = Math.floor(Math.random() * plstlgt);
+    r = r-1;
+    if (r<-1){
+        r=-1
     }
+    mscact = r;
+    next();
+})
+
+
+backbtn.onclick = function(){
+    //boton para retroceder cancion
+    mscact--; 
+    if(mscact<0){
+        mscact=0;
+    }
+    playsong(mscact,plstact);
+    music.play();
 }
-
-
-// Función para mostrar los detalles de la canción seleccionada
-function showSelectedSongDetails(song) {
-    coverimg.src = song.cover;
-    music.src = song.url;   
-}
-
-// Asigna eventos de clic a los botones de las playlists
-plst1.addEventListener('click', function() {
-    currentPlaylist = llistaI;
-    loadAndShowPlaylist();
-});
-
-plst2.addEventListener('click', function() {
-    currentPlaylist = llistaII;
-    loadAndShowPlaylist();
-});
-
-// Carga y muestra la primera lista de reproducción inicialmente
-loadAndShowPlaylist();

@@ -1,0 +1,16 @@
+{
+    "name": "Phonk",
+    "songs": [
+        {
+            "title":"Envolvente 4",
+            "artist":"Montagem",
+            "url":"./src/montagemenvolvente4.mp3",
+            "cover":"./img/envolvente-4.jpg"
+        },
+        {
+            "title":"Montagem PR funk",
+            "artist":"Montagem",
+            "url":"./src/montagemprfunk.mp3",
+            "cover":"./img/pr-funk.jpg" 
+        }    ]
+}
