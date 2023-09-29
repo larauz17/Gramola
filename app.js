@@ -1,3 +1,4 @@
+document.addEventListener('DOMContentLoaded', function() {
 let pausebtn = document.getElementById("play");
 let imgChange = document.getElementById("imgchange");
 var playorpause = true;
@@ -12,10 +13,9 @@ let backbtn = document.getElementById("back")
 let randombtn = document.getElementById("random")
 var plstact=0; // playlist actual
 var mscact = 0;  //cancinon actual
-var plstlgt; //longitud de la lista actual
+let plstlgt; //longitud de la lista actual
 let rs = 0; //random song 
 const durationBar = document.getElementById("duration-bar");
-
 let stopbtn = document.getElementById("stop");
 
 playsong(mscact,plstact); // se inicializa la gramola con la primera cancion de la primera lista
@@ -57,39 +57,22 @@ pausebtn.addEventListener("click",playpause)
 
 nextbtn.addEventListener("click",next)
 
- 
-let listaplaylist = document.getElementById("playlist-list")
-
-
 
 const songList = document.getElementById("song-list");
 
 // Agregar un evento de clic a cada elemento de lista de reproducción
 
 
-musica.forEach((playlist, index) => {
-    const listItem = document.createElement("li"); // Crear un elemento de lista
-    const link = document.createElement("a");
-    link.textContent = playlist.name;
+const playlistLinks = document.querySelectorAll('.playlist-link');
 
-    // Agregar un evento clic al nombre de la lista
-    link.addEventListener("click", () => {
-        // Obtener el número de canciones en la lista actual
-        const plstlgt = playlist.songs.length;
-
-        // Mostrar las canciones de la lista y establecer la lista actual
-        showSongs(playlist, index);
-
-        // Establecer la lista actual según el índice
-        plstact = index;
-
-        // Preparar la primera canción de la lista seleccionada
-        playsong(0, plstact);
+    playlistLinks.forEach((link, index) => {
+        link.addEventListener('click', (event) => {
+            // No necesitas evitar el comportamiento predeterminado, dejará que el enlace funcione
+            var playlistId = this.getAttribute('href').split('=')[1];
+            const playlistLength = musica[playlistId].songs.length;
+            console.log(`Número de canciones en la lista de reproducción: ${playlistLength}`);
+        });
     });
-
-    listItem.appendChild(link);
-    playlist-list.appendChild(listItem); // Agregar el elemento de lista a la lista de reproducción
-});
 
 
 function showSongs(playlist, listIndex) {
@@ -173,18 +156,20 @@ stopbtn.addEventListener("click", function(){
 }
 )
 function next (){
+    playorpause = true;
+    playpause();
     mscact++;
-    if(mscact>plstlgt){
+    if(mscact>plstlgt-1){
         mscact=0;
     }
     playsong(mscact,plstact); 
     music.play();
+    
 }
 
 randombtn.addEventListener("click",function(){
     playorpause = true;
     playpause();
-
     var r = Math.floor(Math.random() * plstlgt);
     r = r-1;
     if (r<-1){
@@ -196,11 +181,14 @@ randombtn.addEventListener("click",function(){
 
 
 backbtn.onclick = function(){
-    //boton para retroceder cancion
+    console.log(mscact);
+    playorpause = true;
+    playpause();
     mscact--; 
     if(mscact<0){
         mscact=0;
     }
-    playsong(mscact,plstact);
+    playsong(mscact,plstact); 
     music.play();
 }
+})

@@ -7,34 +7,52 @@ foreach (glob("*.json") as $file) {
         $playlists[] = $playlistData;
     }
 }
-
 ?>
+<?php
+session_start(); // Iniciar la sesión
 
+// Verificar si la variable de sesión "nombre" está definida
+if (isset($_SESSION["nombre"])) {
+    $nombre = $_SESSION["nombre"];
+} else {
+    header("Location: nomsessio.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="utf-8"/>
     <title>La Gramola-Luis Arauz</title>
     <link rel="shortcut icon" href="./img/gramolaico.jpg">
     <link rel="stylesheet" type="text/css" href="./style.css">
 </head>
 <body>
-   
+
     <div class="container">
         <div class="Nav">
         <ul id="playlist-list">
-        <?php
-                foreach ($playlists as $index => $playlist) {
-                    // Agrega un enlace o elemento de lista con un atributo 'data-id' para identificar la lista
-                    echo '<li><a href="#" class="playlist-link" data-id="' . $index . '">' . $playlist['name'] . '</a></li>';
-                }
-                ?>
+        <ul id="playlist-list">
+    
+</ul>
+<?php
+foreach ($playlists as $index => $playlist) {
+    echo '<li><a href="index.php?playlist_id=' . $index . '">' . $playlist['name'] . '</a></li>';
+}
+?>
         </ul>
         <ul id=>Afegir playlist</ul>
+        <?php
+    // Comprobar si la session 'nombre' está establecida
+    if (isset($_SESSION['nombre'])) {
+        echo '<p>Hola, ' . htmlspecialchars($nombre) . '</p>';
+    }
+    ?>
         </div>
     <div class="Body">
             
-            
+    
         <div class="Art-Box">
             <div id="playlist-act">
                 <ul id="song-list"></ul>

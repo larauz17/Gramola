@@ -2,7 +2,7 @@ body{
 margin: 0;}
 
 .Nav {
-    
+
     width: 100%;
     height: 20vh;
     background-color: #935f7e;
@@ -10,7 +10,16 @@ margin: 0;}
     align-items: center;
     display: flex;
     flex-direction: row;
-
+  }
+.Nav a{
+  color: whitesmoke;
+  text-decoration:none;
+}
+  .Nav a:hover, .dropdown:hover .dropbtn {
+    background-color: #3f344a4a;
+    display: flex;
+    padding: 35px;
+    color: whitesmoke;
   }
   #playlist-list {
     list-style: none; /* Elimina los marcadores de lista predeterminados */
