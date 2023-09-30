@@ -13,14 +13,12 @@ let backbtn = document.getElementById("back")
 let randombtn = document.getElementById("random")
 var plstact=0; // playlist actual
 var mscact = 0;  //cancinon actual
-let plstlgt; //longitud de la lista actual
-let rs = 0; //random song 
+let plstlgt= musica[playlistId].songs.length; //longitud de la lista actual
 const durationBar = document.getElementById("duration-bar");
 let stopbtn = document.getElementById("stop");
-
-playsong(mscact,plstact); // se inicializa la gramola con la primera cancion de la primera lista
-
-
+plstact=playlistId;
+//la variable playlistId viene de la ID de la URL
+playsong(mscact,playlistId); // se inicializa la gramola con la primera cancion de la primera lista
 music.addEventListener("timeupdate", function() {
       //se crea la funcion de la barra de reproduccion
     const currentTime = music.currentTime;          // se crea la variable para saber el momento actual de la cancion
@@ -47,40 +45,17 @@ durationBar.addEventListener("click", function(event) {
 
     music.currentTime = position * music.duration;
 });
-
-
-
-
-
 // funcion para poder pausar o reproducir musica (true es reproducir ) 
-pausebtn.addEventListener("click",playpause)
 
-nextbtn.addEventListener("click",next)
-
-
-const songList = document.getElementById("song-list");
-
-// Agregar un evento de clic a cada elemento de lista de reproducción
-
-
-const playlistLinks = document.querySelectorAll('.playlist-link');
-
-    playlistLinks.forEach((link, index) => {
-        link.addEventListener('click', (event) => {
-            // No necesitas evitar el comportamiento predeterminado, dejará que el enlace funcione
-            var playlistId = this.getAttribute('href').split('=')[1];
-            const playlistLength = musica[playlistId].songs.length;
-            console.log(`Número de canciones en la lista de reproducción: ${playlistLength}`);
-        });
-    });
-
-
-function showSongs(playlist, listIndex) {
+showSongs(musica,playlistId)
+// Agregar un evento de clic a cada elemento de lista de reproducción)
+function showSongs(musica, playlistId) {
     // Limpiar la lista de canciones
+    const songList = document.getElementById("song-list");
     songList.innerHTML = "";
 
     // Iterar a través de las canciones y agregarlas a la lista
-    playlist.songs.forEach((song, index) => {
+    musica[playlistId].songs.forEach((song, index) => {
         const listItem = document.createElement("li");
         listItem.classList.add("song-item"); // Agrega una clase para el estilo CSS
 
@@ -105,8 +80,7 @@ function showSongs(playlist, listIndex) {
         // Agregar un evento de clic para mostrar información detallada
         listItem.addEventListener("click", () => {
             mscact = index;
-            plstact = listIndex;
-            playsong(mscact, plstact);
+            playsong(mscact, playlistId);
         });
 
         // Agregar el elemento de la lista completo a la lista de canciones
@@ -123,8 +97,6 @@ function playsong(index,listIndex){
     music.src =mscobj.url;
     artista.textContent = mscobj.artist;
     musicnme.textContent = mscobj.title;
-
-
     music.addEventListener('loadedmetadata', () => {
         
         const dtot = music.duration;
@@ -135,7 +107,7 @@ function playsong(index,listIndex){
       });
 
 };
-
+pausebtn.addEventListener("click",playpause);
 function playpause(){
     if (playorpause){
         imgChange.src = "./img/pauseb.png"
@@ -155,6 +127,7 @@ stopbtn.addEventListener("click", function(){
     playpause();
 }
 )
+nextbtn.addEventListener("click",next);
 function next (){
     playorpause = true;
     playpause();
@@ -168,17 +141,13 @@ function next (){
 }
 
 randombtn.addEventListener("click",function(){
-    playorpause = true;
-    playpause();
     var r = Math.floor(Math.random() * plstlgt);
-    r = r-1;
-    if (r<-1){
-        r=-1
-    }
     mscact = r;
-    next();
+    playsong(mscact,plstact);
+    playorpause=true; 
+    playpause();
+    music.play();
 })
-
 
 backbtn.onclick = function(){
     console.log(mscact);

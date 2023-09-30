@@ -41,6 +41,7 @@ foreach ($playlists as $index => $playlist) {
     echo '<li><a href="index.php?playlist_id=' . $index . '">' . $playlist['name'] . '</a></li>';
 }
 ?>
+
         </ul>
         <ul id=>Afegir playlist</ul>
         <?php
@@ -52,7 +53,13 @@ foreach ($playlists as $index => $playlist) {
         </div>
     <div class="Body">
             
-    
+    <?php
+if(isset($_GET['playlist_id'])) {
+    $playlistId = $_GET['playlist_id'];
+    echo '<script>var playlistId = ' . $playlistId . ';</script>';
+}
+?>
+
         <div class="Art-Box">
             <div id="playlist-act">
                 <ul id="song-list"></ul>
