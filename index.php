@@ -56,9 +56,12 @@ foreach ($playlists as $index => $playlist) {
     <?php
 if(isset($_GET['playlist_id'])) {
     $playlistId = $_GET['playlist_id'];
-    echo '<script>var playlistId = ' . $playlistId . ';</script>';
-}
+    if(isset($playlistId) && isset($playlists[$playlistId])) {
+        $selectedPlaylist = $playlists[$playlistId];
+        // Ahora $selectedPlaylist contiene el array asociado a la lista de reproducción seleccionada.
+    }}
 ?>
+
 
         <div class="Art-Box">
             <div id="playlist-act">
@@ -110,7 +113,7 @@ if(isset($_GET['playlist_id'])) {
 
    
     <script>
-            var musica=<?php echo json_encode($playlists);?>
+            var musica=<?php echo json_encode($selectedPlaylist);?>
     </script>  
     <!-- Script JavaScript para manipular la música -->
     <script src="./app.js"></script>

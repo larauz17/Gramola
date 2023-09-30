@@ -11,14 +11,13 @@ const songdur= document.getElementById("tactual")
 let nextbtn = document.getElementById("next")
 let backbtn = document.getElementById("back")
 let randombtn = document.getElementById("random")
-var plstact=0; // playlist actual
 var mscact = 0;  //cancinon actual
-let plstlgt= musica[playlistId].songs.length; //longitud de la lista actual
+let plstlgt= musica.songs.length;
 const durationBar = document.getElementById("duration-bar");
 let stopbtn = document.getElementById("stop");
-plstact=playlistId;
 //la variable playlistId viene de la ID de la URL
-playsong(mscact,playlistId); // se inicializa la gramola con la primera cancion de la primera lista
+playsong(mscact); // se inicializa la gramola con la primera cancion de la primera lista
+
 music.addEventListener("timeupdate", function() {
       //se crea la funcion de la barra de reproduccion
     const currentTime = music.currentTime;          // se crea la variable para saber el momento actual de la cancion
@@ -47,15 +46,15 @@ durationBar.addEventListener("click", function(event) {
 });
 // funcion para poder pausar o reproducir musica (true es reproducir ) 
 
-showSongs(musica,playlistId)
+showSongs(musica)
 // Agregar un evento de clic a cada elemento de lista de reproducción)
-function showSongs(musica, playlistId) {
+function showSongs(musica) {
     // Limpiar la lista de canciones
     const songList = document.getElementById("song-list");
     songList.innerHTML = "";
 
     // Iterar a través de las canciones y agregarlas a la lista
-    musica[playlistId].songs.forEach((song, index) => {
+    musica.songs.forEach((song, index) => {
         const listItem = document.createElement("li");
         listItem.classList.add("song-item"); // Agrega una clase para el estilo CSS
 
@@ -80,7 +79,7 @@ function showSongs(musica, playlistId) {
         // Agregar un evento de clic para mostrar información detallada
         listItem.addEventListener("click", () => {
             mscact = index;
-            playsong(mscact, playlistId);
+            playsong(mscact);
         });
 
         // Agregar el elemento de la lista completo a la lista de canciones
@@ -89,10 +88,10 @@ function showSongs(musica, playlistId) {
 }
 
 // controles del reproductor
-function playsong(index,listIndex){
+function playsong(index){
     songdur.textContent="0:00"; 
-    const plist = musica[listIndex]; //se define en que playlist esta la cancion que se va a reproducir
-    const mscobj = plist.songs[index];  //se escoge la array que contiene la cancion
+ //se define en que playlist esta la cancion que se va a reproducir
+    const mscobj = musica.songs[index];  //se escoge la array que contiene la cancion
     cover.src= mscobj.cover;
     music.src =mscobj.url;
     artista.textContent = mscobj.artist;
@@ -135,7 +134,7 @@ function next (){
     if(mscact>plstlgt-1){
         mscact=0;
     }
-    playsong(mscact,plstact); 
+    playsong(mscact); 
     music.play();
     
 }
@@ -143,7 +142,7 @@ function next (){
 randombtn.addEventListener("click",function(){
     var r = Math.floor(Math.random() * plstlgt);
     mscact = r;
-    playsong(mscact,plstact);
+    playsong(mscact);
     playorpause=true; 
     playpause();
     music.play();
@@ -157,7 +156,7 @@ backbtn.onclick = function(){
     if(mscact<0){
         mscact=0;
     }
-    playsong(mscact,plstact); 
+    playsong(mscact); 
     music.play();
 }
 })
