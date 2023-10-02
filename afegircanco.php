@@ -1,7 +1,7 @@
 <?php
 session_start(); 
-if (isset($_SESSION["playlistFileName"])) {
-    $json = $_SESSION["playlistFileName"];
+if (isset($_SESSION["playlistfilename"])) {
+    $json = $_SESSION["playlistfilename"];
 }else{
     
         header("Location: nomsessio.php"); //si no lo essta redirecciona al formulario para añadir el nomnbre

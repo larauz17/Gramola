@@ -1,23 +1,35 @@
 {
-    "name": "Pop",
+    "name": "Rock",
     "songs": [
         {
-            "title": "Dancin",
-            "artist": "Aaron-Smith",
-            "url": ".\/src\/Aaron-Smith-Dancin.mp3",
-            "cover": ".\/img\/dancin.jpg"
-        },
-        {
-            "title": "Lone Digger",
-            "artist": "Caravan Palace",
-            "url": ".\/src\/Caravan-Palace-Lone-Digger.mp3",
-            "cover": ".\/img\/lonedigger.png"
-        },
-        {
-            "title": "Summer in New York",
-            "artist": "Soffi Tukker",
-            "url": ".\/src\/summerinnewyork.mp3",
-            "cover": ".\/img\/summerinnewyork.jpg"
-        }
-    ]
+            "title":"Back in Black",
+            "artist":"AC-DC",
+            "url":"./src/Back-In-Black.mp3",
+            "cover":"./img/backinblack.png"
+        },  
+       {
+        "title":"High way to hell",
+        "artist":"AC-DC",
+        "url":"./src/highwaytohell.mp3",
+        "cover":"./img/highwaytohell.jpg"
+    },
+    {
+        "title":"ThunderStruck",
+        "artist":"AC-DC",
+        "url":"./src/thunderstruck.mp3",
+        "cover":"./img/thunderstruck.jpg"
+    },
+    {
+        "title":"Voy a pasarmelo bien",
+        "artist":"Hombres G",
+        "url":"./src/voyapasarmelobien.mp3",
+        "cover":"./img/voyapasarmelobien.jpg"
+    },
+    {
+        "title":"Devuelveme a mi chica",
+        "artist":"Hombres G",
+        "url":"./src/devuelvemeamichica.mp3",
+        "cover":"./img/devuelvemeamichica.jpg"
+    }
+]
 }

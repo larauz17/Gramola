@@ -165,7 +165,7 @@ div#llistamusica{
     display: flex;
     align-items: center;
     padding: 5px;
-    border: 1px solid #b13376;
+    border: 1px solid #b1337600;
     margin-bottom: 10px;
     width: 310px;
     border-radius: 10px;
@@ -183,6 +183,23 @@ div#llistamusica{
   margin-left: 10px;
 }
 #afegir-canco a{
+  color: white;
+
+  text-decoration:none;
+
+}
+#borrar-canco{
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid #b13376;
+  margin-bottom: 10px;
+  width: 310px;
+  border-radius: 10px;
+  background-color: #935f7e;
+  margin-left: 10px;
+}
+#borrar-canco a{
   color: white;
 
   text-decoration:none;

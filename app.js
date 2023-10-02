@@ -11,12 +11,24 @@ const songdur= document.getElementById("tactual")
 let nextbtn = document.getElementById("next")
 let backbtn = document.getElementById("back")
 let randombtn = document.getElementById("random")
+let afegirlista = document.getElementById("afegirlista")
 var mscact = 0;  //cancinon actual
 let plstlgt= musica.songs.length;
 const durationBar = document.getElementById("duration-bar");
 let stopbtn = document.getElementById("stop");
 //la variable playlistId viene de la ID de la URL
 playsong(mscact); // se inicializa la gramola con la primera cancion de la primera lista
+
+afegirlista.addEventListener("click",mostrarPopUp);
+function mostrarPopUp() {
+    var nombre = prompt("Que nombre tendra la lista");
+    document.getElementById("nomllista").value = nombre;
+        document.getElementById("addlistaform").submit();
+}
+
+
+
+
 
 music.addEventListener("timeupdate", function() {
       //se crea la funcion de la barra de reproduccion
@@ -159,4 +171,4 @@ backbtn.onclick = function(){
     playsong(mscact); 
     music.play();
 }
-})
+});

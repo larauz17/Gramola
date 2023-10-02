@@ -49,7 +49,12 @@ foreach ($playlists as $index => $playlist) {
 ?>
 
         </ul>
-        <ul id=><a href="">Afegir playlist</a>
+        <ul id=><form action="afegirlista.php" method="post" id="addlistaform">
+    <button type="button" id="afegirlista">Añadir Lista</button>
+    <input type="hidden" name="nombre" id="nomllista">
+    <button type="submit" style="display: none;">Enviar</button>
+</form>
+
         </ul>
 
         </div>
@@ -61,7 +66,7 @@ if(isset($_GET['playlist_id'])) {
     if(isset($playlistId) && isset($playlists[$playlistId])) {
         $selectedPlaylist = $playlists[$playlistId];
         $playlistFileName = glob("*.json")[$playlistId]; //asi podemos saber a que archivo corresponde el id
-        
+        $_SESSION["playlistfilename"] = $playlistFileName;
         // Ahora $selectedPlaylist contiene el array asociado a la lista de reproducción seleccionada.
     }}
 ?>
@@ -69,8 +74,10 @@ if(isset($_GET['playlist_id'])) {
 
         <div class="Art-Box">
             <div id="playlist-act">
-                <ul id="song-list"></ul>
-                <ul id="afegir-canco"><a href="formularicanco.html" target="_blank">Afegir canço</a><ul>
+                <ul id="song-list">
+                </ul>
+                <li id="borrar-canco"><a href="borrarlista.php">Borrar playlist</a></li>
+                <li id="afegir-canco"><a href="formularicanco.html" target="_blank">Afegir canço</a><li>
             </div>
                 <div id="columna">   
                     <div class="caratula">
