@@ -15,7 +15,7 @@ session_start(); // Iniciar la sesión
 if (isset($_SESSION["nombre"])) {
     $nombre = $_SESSION["nombre"];
 } else {
-    header("Location: nomsessio.php");
+    header("Location: nomsessio.php"); //si no lo essta redirecciona al formulario para añadir el nomnbre
     exit();
 }
 ?>
@@ -32,6 +32,12 @@ if (isset($_SESSION["nombre"])) {
 
     <div class="container">
         <div class="Nav">
+        <?php
+    // Comprobar si la session 'nombre' está establecida
+    if (isset($_SESSION['nombre'])) {
+        echo '<p>Hola, ' . htmlspecialchars($nombre) . '</p>';
+    }
+    ?>
         <ul id="playlist-list">
         <ul id="playlist-list">
     
@@ -43,13 +49,9 @@ foreach ($playlists as $index => $playlist) {
 ?>
 
         </ul>
-        <ul id=>Afegir playlist</ul>
-        <?php
-    // Comprobar si la session 'nombre' está establecida
-    if (isset($_SESSION['nombre'])) {
-        echo '<p>Hola, ' . htmlspecialchars($nombre) . '</p>';
-    }
-    ?>
+        <ul id=><a href="">Afegir playlist</a>
+        </ul>
+
         </div>
     <div class="Body">
             
@@ -58,6 +60,8 @@ if(isset($_GET['playlist_id'])) {
     $playlistId = $_GET['playlist_id'];
     if(isset($playlistId) && isset($playlists[$playlistId])) {
         $selectedPlaylist = $playlists[$playlistId];
+        $playlistFileName = glob("*.json")[$playlistId]; //asi podemos saber a que archivo corresponde el id
+        
         // Ahora $selectedPlaylist contiene el array asociado a la lista de reproducción seleccionada.
     }}
 ?>
@@ -66,6 +70,7 @@ if(isset($_GET['playlist_id'])) {
         <div class="Art-Box">
             <div id="playlist-act">
                 <ul id="song-list"></ul>
+                <ul id="afegir-canco"><a href="formularicanco.html" target="_blank">Afegir canço</a><ul>
             </div>
                 <div id="columna">   
                     <div class="caratula">
@@ -87,9 +92,6 @@ if(isset($_GET['playlist_id'])) {
         </div>
         
             
-            <div class="Status-Box">
-                <!-- Mostrar información de la canción actual (nombre, artista, tiempo, etc.) -->
-            </div>
             <div class="Controls-Box">
                 <button class="controls" id="stop">
                     <img src="./img/stop.png" alt="">
@@ -112,7 +114,7 @@ if(isset($_GET['playlist_id'])) {
     </div>
 
    
-    <script>
+    <script> //se crea la variable que contiene la lista selecionadasa
             var musica=<?php echo json_encode($selectedPlaylist);?>
     </script>  
     <!-- Script JavaScript para manipular la música -->

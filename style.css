@@ -1,6 +1,11 @@
 body{
 margin: 0;}
-
+.Nav p{
+  background-color: #935f7e;
+  display: flex;
+  padding: 25px;
+  color: whitesmoke;
+}
 .Nav {
 
     width: 100%;
@@ -166,6 +171,24 @@ div#llistamusica{
     border-radius: 10px;
     background-color: #935f7e;
   }
+#afegir-canco{
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid #b13376;
+  margin-bottom: 10px;
+  width: 310px;
+  border-radius: 10px;
+  background-color: #935f7e;
+  margin-left: 10px;
+}
+#afegir-canco a{
+  color: white;
+
+  text-decoration:none;
+
+}
+
   
   /* Estilo para la imagen de la portada dentro de #playlist-act */
   #playlist-act #song-list li.song-item img {
