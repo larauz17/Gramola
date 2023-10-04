@@ -19,11 +19,11 @@ margin: 0;}
 .Nav a{
   color: whitesmoke;
   text-decoration:none;
+  padding:35px
 }
   .Nav a:hover, .dropdown:hover .dropbtn {
     background-color: #3f344a4a;
     display: flex;
-    padding: 35px;
     color: whitesmoke;
   }
   #playlist-list {
@@ -103,6 +103,7 @@ div.Controls-Box{
     display: flex;
     position: absolute;
     bottom: 0;
+
 }
 
 button.controls{
@@ -188,7 +189,28 @@ div#llistamusica{
   text-decoration:none;
 
 }
-#borrar-canco{
+
+#playlist-act #song-list li.song-item .delete-button{
+  width: 20px; /* Ajusta el ancho de acuerdo a tus necesidades */
+  height: 20px;
+    background-image: url('./img/deletebttn.png'); 
+    border: none; /* Elimina el borde si lo deseas */
+    background-size: cover; /* Esto ajustará la imagen para cubrir completamente el área del botón */
+    background-color: #3f344a00;
+    
+}
+button.afegirllista{
+  width: 60px; /* Ajusta el ancho de acuerdo a tus necesidades */
+  height: 60px;
+    background-image: url('./img/addbtn.png'); 
+    border: none; /* Elimina el borde si lo deseas */
+    background-size: cover; /* Esto ajustará la imagen para cubrir completamente el área del botón */
+    background-color: #3f344a00;
+}
+button.afegirllista:hover{
+    background-color: #3f344a4a;
+}
+#borrar-playlist{
   display: flex;
   align-items: center;
   padding: 5px;
@@ -199,7 +221,7 @@ div#llistamusica{
   background-color: #935f7e;
   margin-left: 10px;
 }
-#borrar-canco a{
+#borrar-playlist a{
   color: white;
 
   text-decoration:none;
@@ -225,4 +247,11 @@ div#llistamusica{
     color: #ffffff;
     margin-left: 10px;
   }
-  
+  #playlist-act #song-list li.song-item .delete-button {
+    color: #ffffff;
+    margin-right: 10px;
+  }
+  div.footer{
+    width: 99%;
+    height: 20vh;
+  }

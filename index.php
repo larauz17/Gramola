@@ -71,17 +71,20 @@ if (isset($_SESSION["nombre"])) {
 <body>
 
     <div class="container">
-        <div class="Nav">
-        <?php
+    <div class="usuari">
+       <?php
     // Comprobar si la session 'nombre' está establecida
-    if (isset($_SESSION['nombre'])) {
+        if (isset($_SESSION['nombre'])) {
         echo '<p>Hola, ' . htmlspecialchars($nombre) . '</p>';
-    }
-    ?>
+        }
+        ?>     
+    </div>
+        <div class="Nav">
+        
         <ul id="playlist-list">
         <ul id="playlist-list">
     
-</ul>
+        </ul>
 
 <?php
 if (!isset($_SESSION['nombrePlaylists'])) {
@@ -97,31 +100,29 @@ foreach ($playlists as $index => $playlist) {
 
    
 }
-print_r($_SESSION['nombrePlaylists']);
 ?>
         </ul>
-        <ul id=><form action="afegirlista.php" method="post" id="addlistaform">
-    <button type="button" id="afegirlista">Añadir Lista</button>
-    <input type="hidden" name="nombre" id="nomllista">
-    <button type="submit" style="display: none;">Enviar</button>
-</form>
-
+        <ul ><form action="afegirlista.php" method="post" id="addlistaform">
+                    <button type="button" id="afegirlista"class="afegirllista" ></button>
+                    <input type="hidden" name="nombre" id="nomllista">
+                    <button type="submit" style="display: none;">Enviar</button>
+                </form>
+            
         </ul>
 
         </div>
     <div class="Body">
-            
-    
-
-
-
-
+    <form action="borrarcanco.php" method="post" id="deleteForm">
+        <input type="hidden" name="cancion" id="songIndex">
+        <button type="button" style="display: none;" id="deleteButton"></button>
+        <button type="submit" style="display: none;" id="submitButton"></button>
+    </form>
 
         <div class="Art-Box">
             <div id="playlist-act">
                 <ul id="song-list">
                 </ul>
-                <li id="borrar-canco"><a href="borrarlista.php">Borrar playlist</a></li>
+                <li id="borrar-playlist"><a href="borrarlista.php">Borrar playlist</a></li>
                 <li id="afegir-canco"><a href="formularicanco.html" target="_blank">Afegir canço</a><li>
             </div>
                 <div id="columna">   
@@ -141,7 +142,7 @@ print_r($_SESSION['nombrePlaylists']);
                     <input type="range" id="duration-bar" min="0" value="0" step="1">
                     <p id=duration-song class="duration-cont"></p>
                     </div>
-                    <a href="fitxatec.php">Fitxa tecnica</a>
+                    
 
                 </div>
                 
@@ -167,12 +168,13 @@ print_r($_SESSION['nombrePlaylists']);
                 
 
             </div>
-            <div class="footer">
-            </div>
+            
 
         </div>
     </div>
-
+    <div class="footer">
+            <a href="fitxatec.php">Fitxa tecnica</a>
+    </div>
    
     <script> //se crea la variable que contiene la lista selecionadasa
             var musica=<?php echo json_encode($selectedPlaylist);?>

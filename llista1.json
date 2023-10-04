@@ -2,34 +2,28 @@
     "name": "Rock",
     "songs": [
         {
-            "title":"Back in Black",
-            "artist":"AC-DC",
-            "url":"./src/Back-In-Black.mp3",
-            "cover":"./img/backinblack.png"
-        },  
-       {
-        "title":"High way to hell",
-        "artist":"AC-DC",
-        "url":"./src/highwaytohell.mp3",
-        "cover":"./img/highwaytohell.jpg"
-    },
-    {
-        "title":"ThunderStruck",
-        "artist":"AC-DC",
-        "url":"./src/thunderstruck.mp3",
-        "cover":"./img/thunderstruck.jpg"
-    },
-    {
-        "title":"Voy a pasarmelo bien",
-        "artist":"Hombres G",
-        "url":"./src/voyapasarmelobien.mp3",
-        "cover":"./img/voyapasarmelobien.jpg"
-    },
-    {
-        "title":"Devuelveme a mi chica",
-        "artist":"Hombres G",
-        "url":"./src/devuelvemeamichica.mp3",
-        "cover":"./img/devuelvemeamichica.jpg"
-    }
-]
+            "title": "High way to hell",
+            "artist": "AC-DC",
+            "url": ".\/src\/highwaytohell.mp3",
+            "cover": ".\/img\/highwaytohell.jpg"
+        },
+        {
+            "title": "ThunderStruck",
+            "artist": "AC-DC",
+            "url": ".\/src\/thunderstruck.mp3",
+            "cover": ".\/img\/thunderstruck.jpg"
+        },
+        {
+            "title": "Voy a pasarmelo bien",
+            "artist": "Hombres G",
+            "url": ".\/src\/voyapasarmelobien.mp3",
+            "cover": ".\/img\/voyapasarmelobien.jpg"
+        },
+        {
+            "title": "Devuelveme a mi chica",
+            "artist": "Hombres G",
+            "url": ".\/src\/devuelvemeamichica.mp3",
+            "cover": ".\/img\/devuelvemeamichica.jpg"
+        }
+    ]
 }

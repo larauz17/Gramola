@@ -17,6 +17,11 @@ let plstlgt= musica.songs.length;
 const durationBar = document.getElementById("duration-bar");
 let stopbtn = document.getElementById("stop");
 //la variable playlistId viene de la ID de la URL
+
+const deleteButton = document.getElementById("deleteButton");
+    const songIndexInput = document.getElementById("songIndex");
+    const submitButton = document.getElementById("submitButton");
+
 playsong(mscact); // se inicializa la gramola con la primera cancion de la primera lista
 
 afegirlista.addEventListener("click",mostrarPopUp);
@@ -31,6 +36,12 @@ function mostrarPopUp() {
 
 
 music.addEventListener("timeupdate", function() {
+
+    music.volume = volumen.value;
+    volumen.addEventListener("input", function () {
+        music.volume = volumen.value;
+    });
+    
       //se crea la funcion de la barra de reproduccion
     const currentTime = music.currentTime;          // se crea la variable para saber el momento actual de la cancion
     const duration = music.duration;               // se mira la duracion
@@ -87,6 +98,22 @@ function showSongs(musica) {
         artistDiv.classList.add("artist");
         artistDiv.textContent = song.artist;
         listItem.appendChild(artistDiv);
+
+        const deleteButton = document.createElement("button");
+        deleteButton.classList.add("delete-button"); // Agrega una clase para el estilo CSS
+        listItem.appendChild(deleteButton);
+
+        deleteButton.addEventListener("click", (event) => {
+            event.stopPropagation();
+        
+            const songIndex = index;
+        
+            songIndexInput.value = songIndex;
+
+        // Simula el clic en el botón de enviar el formulario
+            submitButton.click();
+        });
+
 
         // Agregar un evento de clic para mostrar información detallada
         listItem.addEventListener("click", () => {
@@ -171,9 +198,4 @@ backbtn.onclick = function(){
     playsong(mscact); 
     music.play();
 }
-});
-
-music.volume = volumen.value;
-volumen.addEventListener("input", function () {
-    music.volume = volumen.value;
 });

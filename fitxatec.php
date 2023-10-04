@@ -28,7 +28,7 @@ $fechaHora = $time;
 
 
 
-if (isset($_COOKIE['playlist_counters'])) {
+if (isset($_COOKIE['playlist_counters'])) { //playlist
     $playlistCountersJSON = $_COOKIE['playlist_counters'];
     
     // Decodificar el JSON almacenado en la cookie de contador de playlist
@@ -63,8 +63,8 @@ foreach ($playlistCounters as $posicion => $contador) {
         echo $playlistNombres[$posicion] . '<br>';
     }
 }
-?></p>
-    <!-- Más contenido HTML si es necesario -->
+?>
+</p>
 
 </body>
 </html>

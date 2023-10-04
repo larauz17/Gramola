@@ -1,5 +1,5 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+if (($_SERVER["REQUEST_METHOD"] === "POST")  && !empty($_POST['nombre'])) {
     if(isset($_POST['nombre'])) {
         $name = $_POST['nombre'];
 
@@ -29,6 +29,8 @@ file_put_contents($nombreArchivo, $json_data);
 header("Location: index.php");
     exit();
     }
+}else{
+    header("Location: index.php");
 }
 ?>
 

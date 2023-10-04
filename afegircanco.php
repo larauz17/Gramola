@@ -1,15 +1,16 @@
 <?php
 session_start(); 
 if (isset($_SESSION["playlistfilename"])) {
-    $json = $_SESSION["playlistfilename"];
+    $json = $_SESSION["playlistfilename"];   // se mete el archivo en una variable 
 }else{
     
         header("Location: nomsessio.php"); //si no lo essta redirecciona al formulario para añadir el nomnbre
         exit();
     
 }
+                // añadimos los datos de el cuestionario en las variables
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $title = $_POST["title"];
+    $title = $_POST["title"];                   
     $artist = $_POST["artist"];
     $audioFile = $_FILES["audio"];
     $coverImageFile = $_FILES["coverImage"];
@@ -20,8 +21,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     move_uploaded_file($audioFile["tmp_name"], $audioFilePath);
     move_uploaded_file($coverImageFile["tmp_name"], $coverImagePath);
+
+
         // Crear un array con los datos de la nueva canción
-    $newSong = [
+    
+        $newSong = [
         "title" => $title,
         "artist" => $artist,
         "url" => $audioFilePath,
