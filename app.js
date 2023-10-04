@@ -172,3 +172,8 @@ backbtn.onclick = function(){
     music.play();
 }
 });
+
+music.volume = volumen.value;
+volumen.addEventListener("input", function () {
+    music.volume = volumen.value;
+});

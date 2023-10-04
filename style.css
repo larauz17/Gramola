@@ -175,7 +175,7 @@ div#llistamusica{
   display: flex;
   align-items: center;
   padding: 5px;
-  border: 1px solid #b13376;
+  border: 1px solid ;
   margin-bottom: 10px;
   width: 310px;
   border-radius: 10px;
@@ -192,7 +192,7 @@ div#llistamusica{
   display: flex;
   align-items: center;
   padding: 5px;
-  border: 1px solid #b13376;
+  border: 1px solid ;
   margin-bottom: 10px;
   width: 310px;
   border-radius: 10px;

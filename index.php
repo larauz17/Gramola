@@ -1,4 +1,5 @@
 <?php
+session_start(); // Iniciar la sesión
 $playlists = [];
 
 foreach (glob("*.json") as $file) {
@@ -9,7 +10,46 @@ foreach (glob("*.json") as $file) {
 }
 ?>
 <?php
-session_start(); // Iniciar la sesión
+if(isset($_GET['playlist_id'])) {
+    $playlistId = $_GET['playlist_id'];
+    if(isset($playlistId) && isset($playlists[$playlistId])) {
+        $selectedPlaylist = $playlists[$playlistId];
+
+        //
+        $playlistFileName = glob("*.json")[$playlistId]; //asi podemos saber a que archivo corresponde el id
+        $_SESSION["playlistfilename"] = $playlistFileName;
+        $_playlistname = $playlists[$playlistId]["name"];
+        $_SESSION["playlistname"] = $_playlistname;
+        $time =date("Y-m-d H:i:s");
+        $_SESSION["time"] = $time;
+        // Ahora $selectedPlaylist contiene el array asociado a la lista de reproducción seleccionada.
+
+
+        
+    }}
+
+
+    $playlistCounters = [];
+
+    // Lee la cookie si existe
+    if (isset($_COOKIE["playlist_counters"])) {
+        $playlistCounters = json_decode($_COOKIE["playlist_counters"], true);
+    }
+
+    // Incrementa el contador de la playlist actual
+    if (array_key_exists($playlistId, $playlistCounters)) {
+        $playlistCounters[$playlistId]++;
+    } else {
+        // Si la playlist no existe en el array, inicializa el contador en 1
+        $playlistCounters[$playlistId] = 1;
+    }
+    
+    // Convierte el array a JSON y guarda la información en la cookie
+    $playlistCountersJSON = json_encode($playlistCounters);
+    setcookie("playlist_counters", $playlistCountersJSON, time() + 3600, "/"); // La cookie expirará en 1 hora (3600 segundos)
+    ?>
+<?php
+
 
 // Verificar si la variable de sesión "nombre" está definida
 if (isset($_SESSION["nombre"])) {
@@ -42,12 +82,23 @@ if (isset($_SESSION["nombre"])) {
         <ul id="playlist-list">
     
 </ul>
-<?php
-foreach ($playlists as $index => $playlist) {
-    echo '<li><a href="index.php?playlist_id=' . $index . '">' . $playlist['name'] . '</a></li>';
-}
-?>
 
+<?php
+if (!isset($_SESSION['nombrePlaylists'])) {
+    $_SESSION['nombrePlaylists'] = [] ;
+}
+
+foreach ($playlists as $index => $playlist) {
+    $nombrePlaylist = $playlist['name'];
+    if (!in_array($nombrePlaylist, $_SESSION['nombrePlaylists'])) {
+        $_SESSION['nombrePlaylists'][] = $nombrePlaylist; // Agrega el nombre de la playlist a la sesión
+    }
+    echo '<li><a href="index.php?playlist_id=' . $index . '">' . $playlist['name'] . '</a></li>';
+
+   
+}
+print_r($_SESSION['nombrePlaylists']);
+?>
         </ul>
         <ul id=><form action="afegirlista.php" method="post" id="addlistaform">
     <button type="button" id="afegirlista">Añadir Lista</button>
@@ -60,16 +111,10 @@ foreach ($playlists as $index => $playlist) {
         </div>
     <div class="Body">
             
-    <?php
-if(isset($_GET['playlist_id'])) {
-    $playlistId = $_GET['playlist_id'];
-    if(isset($playlistId) && isset($playlists[$playlistId])) {
-        $selectedPlaylist = $playlists[$playlistId];
-        $playlistFileName = glob("*.json")[$playlistId]; //asi podemos saber a que archivo corresponde el id
-        $_SESSION["playlistfilename"] = $playlistFileName;
-        // Ahora $selectedPlaylist contiene el array asociado a la lista de reproducción seleccionada.
-    }}
-?>
+    
+
+
+
 
 
         <div class="Art-Box">
@@ -89,16 +134,20 @@ if(isset($_GET['playlist_id'])) {
                         <p id="cancion"></p>
                         </div>
                     </div>
+                    <input type="range" id="volumen" min="0" max="1" step="0.01" value="0.5" />
                     <div id=volume-bar>
                         <p id="tactual"class="duration-cont">
                         </p>
                     <input type="range" id="duration-bar" min="0" value="0" step="1">
                     <p id=duration-song class="duration-cont"></p>
                     </div>
+                    <a href="fitxatec.php">Fitxa tecnica</a>
+
                 </div>
+                
         </div>
         
-            
+        
             <div class="Controls-Box">
                 <button class="controls" id="stop">
                     <img src="./img/stop.png" alt="">
@@ -116,7 +165,11 @@ if(isset($_GET['playlist_id'])) {
                     <img src="./img/random.png" alt="">
                 </button>
                 
+
             </div>
+            <div class="footer">
+            </div>
+
         </div>
     </div>
 
