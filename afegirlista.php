@@ -1,7 +1,13 @@
 <?php
+session_start(); // Iniciar la sesión
+
+if (isset($_SESSION["url"])) {
+    $url = $_SESSION["url"];        //se busca la pagina en la que estaba el usuario
+
 if (($_SERVER["REQUEST_METHOD"] === "POST")  && !empty($_POST['nombre'])) {
-    if(isset($_POST['nombre'])) {
+    if(isset($_POST['nombre'])) {                                           // se guarda el nombre de la lista que llega de post
         $name = $_POST['nombre'];
+        
 
 // Patrón para archivos JSON
 $patron = "*.json";
@@ -26,11 +32,13 @@ $json_data = json_encode($data, JSON_PRETTY_PRINT);
 
 // Escribir el JSON en un archivo con el nombre concatenado en el directorio actual
 file_put_contents($nombreArchivo, $json_data);
-header("Location: index.php");
+header("Location:$url");
     exit();
     }
 }else{
-    header("Location: index.php");
+    header("Location:$url");
+}}else{
+    header("Location:$url");
 }
 ?>
 

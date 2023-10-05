@@ -19,7 +19,7 @@ if (isset($_SESSION['nombrePlaylists'])) {
 
 }
 
-// Supongamos que aquí obtienes el nombre de usuario actual
+//  el nombre de usuario actual
 $usuario = $nombre;
 
 // Supongamos que aquí obtienes la última playlist escuchada con fecha y hora
@@ -34,7 +34,7 @@ if (isset($_COOKIE['playlist_counters'])) { //playlist
     // Decodificar el JSON almacenado en la cookie de contador de playlist
     $playlistCounters = json_decode($playlistCountersJSON, true);
     
-    // Utilizar el array $playlistCounters según sea necesario
+    // Utilizar el array $playlistCounters 
 }
 
 // Tu array de números

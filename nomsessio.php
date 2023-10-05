@@ -20,11 +20,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Sesión</title>
+    <link rel="stylesheet" type="text/css" href="./forn.css">
 </head>
 <body>
-    <h1>Inicio Session</h1>
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-        <label for="nombre">Nombre:</label>
+        <label for="nombre">Como te llamas?</label>
         <input type="text" id="nombre" name="nombre" required>
         <button type="submit">Enviar</button>
     </form>

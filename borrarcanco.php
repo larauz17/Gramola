@@ -5,6 +5,10 @@ if (isset($_SESSION["playlistfilename"])) {
     $json = $_SESSION["playlistfilename"]; //se busca si hay una sesion con el nombre del archivo json
 
 }
+
+if (isset($_SESSION["url"])) {
+    $url = $_SESSION["url"];}  //escojemos la url actual
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener el índice de la canción a eliminar desde el formulario
     $index = $_POST["cancion"];         //recibimos el index de la cancion js
@@ -22,8 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     file_put_contents($json, $jsonContent);                             // se guarda el archivo 
 
-    // Redirigir al usuario de vuelta a la página principal u otra página de tu elección
-    header("Location: index.php");
+    // Redirigir al usuario de vuelta a la página principal 
+    header("Location: $url");
     exit();
 }
 ?>

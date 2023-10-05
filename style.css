@@ -1,16 +1,18 @@
 body{
 margin: 0;}
 .Nav p{
-  background-color: #935f7e;
+  background-color: #269CF0;
   display: flex;
-  padding: 25px;
+  padding: 20px;
   color: whitesmoke;
+  margin-right: 30px;
+  border-radius: 25px;
 }
 .Nav {
 
     width: 100%;
     height: 20vh;
-    background-color: #935f7e;
+    background-color: #172554;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -19,13 +21,14 @@ margin: 0;}
 .Nav a{
   color: whitesmoke;
   text-decoration:none;
-  padding:35px
+  margin-left: 20px;
+  padding: 20px;
 }
-  .Nav a:hover, .dropdown:hover .dropbtn {
-    background-color: #3f344a4a;
-    display: flex;
+  .Nav a:hover {
+    background-color: #5e5b604a;
     color: whitesmoke;
   }
+
   #playlist-list {
     list-style: none; /* Elimina los marcadores de lista predeterminados */
     padding: 0; /* Elimina el espacio de relleno predeterminado de la lista */
@@ -40,7 +43,7 @@ margin: 0;}
 div.Art-Box {
   height: 470px;
   width: 100%;
-  background-color: #3f344a;
+  background-color: #333333;
   display: flex;
 }
 #columna{
@@ -53,7 +56,7 @@ div.Art-Box {
 }
 
 div.caratula {
-    background-color: #935f7e;
+    background-color: #172554;
     width: 200px;
     height: 200px;
     display: flex;
@@ -97,7 +100,7 @@ div#volume-bar input#duration-bar{
 div.Controls-Box{
     height: 10vw;
     width: 100vw;
-    background-color: #935f7e;
+    background-color: #172554;
     justify-content: center;/* Poner el texto al medio del div */
     align-items: center;
     display: flex;
@@ -109,7 +112,7 @@ div.Controls-Box{
 button.controls{
     width: 40px;
     height:40px;
-    background-color:#3f344a;
+    background-color:#393a39;
     margin: 5px;
     padding:7px;
     -webkit-border-radius: 50px;
@@ -122,7 +125,7 @@ button.controls{
     border: none;}
 
 button.controls:hover {
-    background: #e2a9c2;
+    background: #269CF0;
     color: #fff !important;
   }
 
@@ -143,7 +146,7 @@ div#llistamusica{
     margin-top: auto;
     width: 350px; /* Ancho del contenedor (ajusta según tus preferencias) */
     overflow-y: scroll; /* Agrega una barra de desplazamiento vertical */
-    background-color: #3f344a;
+    background-color: #494d4b42;;
 /* Ancho de la barra de desplazamiento (puedes usar "auto" o "thin") */
     scrollbar-width: thin;
     scrollbar-color: transparent transparent;
@@ -170,26 +173,49 @@ div#llistamusica{
     margin-bottom: 10px;
     width: 310px;
     border-radius: 10px;
-    background-color: #935f7e;
+    background-color: #172554;
+  }
+  #playlist-act #song-list li.song-item:hover {
+    background-color: #269CF0;
   }
 #afegir-canco{
   display: flex;
   align-items: center;
   padding: 5px;
-  border: 1px solid ;
+  border: none ;
   margin-bottom: 10px;
   width: 310px;
   border-radius: 10px;
-  background-color: #935f7e;
+  background-color: #172554;
   margin-left: 10px;
 }
 #afegir-canco a{
+  color: white;
+  text-decoration:none;
+}
+#afegir-canco:hover{
+  background-color: #269CF0;
+  }
+#borrar-playlist{
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border: none ;
+  margin-bottom: 10px;
+  width: 310px;
+  border-radius: 10px;
+  background-color: #172554;
+  margin-left: 10px;
+}
+#borrar-playlist:hover{
+background-color: #269CF0;
+}
+#borrar-playlist a{
   color: white;
 
   text-decoration:none;
 
 }
-
 #playlist-act #song-list li.song-item .delete-button{
   width: 20px; /* Ajusta el ancho de acuerdo a tus necesidades */
   height: 20px;
@@ -200,33 +226,17 @@ div#llistamusica{
     
 }
 button.afegirllista{
-  width: 60px; /* Ajusta el ancho de acuerdo a tus necesidades */
-  height: 60px;
+  width: 50px; /* Ajusta el ancho de acuerdo a tus necesidades */
+  height: 50px;
     background-image: url('./img/addbtn.png'); 
     border: none; /* Elimina el borde si lo deseas */
     background-size: cover; /* Esto ajustará la imagen para cubrir completamente el área del botón */
     background-color: #3f344a00;
 }
 button.afegirllista:hover{
-    background-color: #3f344a4a;
+    background-color: #5e5b604a;
 }
-#borrar-playlist{
-  display: flex;
-  align-items: center;
-  padding: 5px;
-  border: 1px solid ;
-  margin-bottom: 10px;
-  width: 310px;
-  border-radius: 10px;
-  background-color: #935f7e;
-  margin-left: 10px;
-}
-#borrar-playlist a{
-  color: white;
 
-  text-decoration:none;
-
-}
 
   
   /* Estilo para la imagen de la portada dentro de #playlist-act */
@@ -251,7 +261,6 @@ button.afegirllista:hover{
     color: #ffffff;
     margin-right: 10px;
   }
-  div.footer{
-    width: 99%;
-    height: 20vh;
-  }
+ 
+
+  

@@ -1,6 +1,8 @@
 <?php
 session_start(); // Iniciar la sesión
-$playlists = [];
+
+
+$playlists = []; //se crea la variable playlists
 
 foreach (glob("*.json") as $file) {
     $playlistData = json_decode(file_get_contents($file), true);
@@ -22,10 +24,7 @@ if(isset($_GET['playlist_id'])) {
         $_SESSION["playlistname"] = $_playlistname;
         $time =date("Y-m-d H:i:s");
         $_SESSION["time"] = $time;
-        // Ahora $selectedPlaylist contiene el array asociado a la lista de reproducción seleccionada.
-
-
-        
+        // Ahora $selectedPlaylist contiene el array asociado a la lista de reproducción seleccionada.        
     }}
 
 
@@ -71,21 +70,21 @@ if (isset($_SESSION["nombre"])) {
 <body>
 
     <div class="container">
-    <div class="usuari">
+        <div class="Nav">
+        <div class="usuari">
        <?php
     // Comprobar si la session 'nombre' está establecida
         if (isset($_SESSION['nombre'])) {
         echo '<p>Hola, ' . htmlspecialchars($nombre) . '</p>';
         }
-        ?>     
-    </div>
-        <div class="Nav">
+        ?>
         
+    </div>
         <ul id="playlist-list">
         <ul id="playlist-list">
     
         </ul>
-
+        
 <?php
 if (!isset($_SESSION['nombrePlaylists'])) {
     $_SESSION['nombrePlaylists'] = [] ;
@@ -98,6 +97,10 @@ foreach ($playlists as $index => $playlist) {
     }
     echo '<li><a href="index.php?playlist_id=' . $index . '">' . $playlist['name'] . '</a></li>';
 
+
+    $url = "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+    $_SESSION['url'] = $url;
+
    
 }
 ?>
@@ -109,8 +112,10 @@ foreach ($playlists as $index => $playlist) {
                 </form>
             
         </ul>
-
+        <a href="fitxatec.php">Fitxa tecnica</a>
         </div>
+        
+
     <div class="Body">
     <form action="borrarcanco.php" method="post" id="deleteForm">
         <input type="hidden" name="cancion" id="songIndex">
@@ -135,7 +140,6 @@ foreach ($playlists as $index => $playlist) {
                         <p id="cancion"></p>
                         </div>
                     </div>
-                    <input type="range" id="volumen" min="0" max="1" step="0.01" value="0.5" />
                     <div id=volume-bar>
                         <p id="tactual"class="duration-cont">
                         </p>
@@ -147,7 +151,6 @@ foreach ($playlists as $index => $playlist) {
                 </div>
                 
         </div>
-        
         
             <div class="Controls-Box">
                 <button class="controls" id="stop">
@@ -165,16 +168,19 @@ foreach ($playlists as $index => $playlist) {
                 <button class="controls" id="random">
                     <img src="./img/random.png" alt="">
                 </button>
+                <div id=vol-ctrl>
+                    <img src="./img/speaker.png">
+                <input type="range" id="volumen" min="0" max="1" step="0.01" value="0.5" />
+                </div>
                 
+
 
             </div>
             
 
         </div>
     </div>
-    <div class="footer">
-            <a href="fitxatec.php">Fitxa tecnica</a>
-    </div>
+    
    
     <script> //se crea la variable que contiene la lista selecionadasa
             var musica=<?php echo json_encode($selectedPlaylist);?>

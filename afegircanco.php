@@ -8,6 +8,12 @@ if (isset($_SESSION["playlistfilename"])) {
         exit();
     
 }
+// buscamos en que pagina estaba para redirigir-lo a la misma al terminar
+if (isset($_SESSION["url"])) {
+    $url = $_SESSION["url"];}
+
+
+
                 // añadimos los datos de el cuestionario en las variables
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST["title"];                   
@@ -15,10 +21,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $audioFile = $_FILES["audio"];
     $coverImageFile = $_FILES["coverImage"];
 
-    // Guardar archivos en el servidor (asegúrate de configurar los permisos adecuados en el directorio)
+    // Guardar archivos en el servidor 
     $audioFilePath = "./src/" . basename($audioFile["name"]);
     $coverImagePath = "./img/" . basename($coverImageFile["name"]);
 
+
+    //tmp name es el que le pone el php
     move_uploaded_file($audioFile["tmp_name"], $audioFilePath);
     move_uploaded_file($coverImageFile["tmp_name"], $coverImagePath);
 
@@ -32,22 +40,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         "cover" => $coverImagePath
     ];
 
-    // Leer la lista de reproducción existente desde el archivo JSON
+    // Leer la lista de reproduccion existente desde el archivo JSON
     $playlistData = json_decode(file_get_contents($json), true);
 
-    // Añadir la nueva canción al array de canciones de la lista de reproducción
+    // Añadir la nueva canción al array de canciones de la lista de reproduccion
     $playlistData['songs'][] = $newSong;
 
     // Convertir el array actualizado a formato JSON
     $jsonContent = json_encode($playlistData, JSON_PRETTY_PRINT);
 
-    // Guardar el JSON actualizado en el archivo de la lista de reproducción
+    // Guardar el JSON actualizado en el archivo de la lista de reproduccion
     file_put_contents($json, $jsonContent);
     
     
     
-    // Redirigir al usuario a la página de la lista de reproducción u otra página de tu elección
-    header("Location: index.php");
+    // Redirigir al usuario a la página de la lista de reproducción 
+    header("Location: $url");
     exit();
 }
 ?>

@@ -12,12 +12,6 @@
             "artist": "Caravan Palace",
             "url": ".\/src\/Caravan-Palace-Lone-Digger.mp3",
             "cover": ".\/img\/lonedigger.png"
-        },
-        {
-            "title": "Summer in new york",
-            "artist": "Sofi Tukker",
-            "url": ".\/src\/summerinnewyork.mp3",
-            "cover": ".\/img\/summerinnewyork.jpg"
         }
     ]
 }

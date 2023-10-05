@@ -1,29 +1,31 @@
 document.addEventListener('DOMContentLoaded', function() {
-let pausebtn = document.getElementById("play");
-let imgChange = document.getElementById("imgchange");
-var playorpause = true;
-const music = document.createElement("audio");
-const cover = document.getElementById("cover");
-const artista = document.getElementById("artista");
-const musicnme = document.getElementById("cancion");
-const songduration = document.getElementById("duration-song");
+let pausebtn = document.getElementById("play");                 //el boton de pausa del reprodutor
+let imgChange = document.getElementById("imgchange");           // //el atributo boton de pausa del reprodutor
+var playorpause = true;                                         //la boleana que cambia la imagen de play/pausa
+const music = document.createElement("audio");                  //se crea el archivo de audio del reproductor
+const cover = document.getElementById("cover");                 //se busca el elemento cover del index.php
+const artista = document.getElementById("artista");             //se busca el elemento artista del index.php
+const musicnme = document.getElementById("cancion");            //se busca el elemento cancion del index.php
+const songduration = document.getElementById("duration-song");  //se busca el elemento duration-song del index.php
 const songdur= document.getElementById("tactual")
-let nextbtn = document.getElementById("next")
-let backbtn = document.getElementById("back")
-let randombtn = document.getElementById("random")
-let afegirlista = document.getElementById("afegirlista")
-var mscact = 0;  //cancinon actual
-let plstlgt= musica.songs.length;
-const durationBar = document.getElementById("duration-bar");
-let stopbtn = document.getElementById("stop");
-//la variable playlistId viene de la ID de la URL
+let nextbtn = document.getElementById("next")                   //boton que avanza de cancion
+let backbtn = document.getElementById("back")                   //boton que retrocede la cancion
+let randombtn = document.getElementById("random")               //boton de random
+let afegirlista = document.getElementById("afegirlista")        //el boton de añadir lista
+var mscact = 0;  //cancinon actual                              
+let plstlgt= musica.songs.length;                               //cojemos la longitud de la lista
+const durationBar = document.getElementById("duration-bar");    //elemento de la duracion de la cancion
+let stopbtn = document.getElementById("stop");                  //boton que pausa la cancion
 
+//el boton que borra cancion(se manda al formulario borrarcanco.php)
 const deleteButton = document.getElementById("deleteButton");
     const songIndexInput = document.getElementById("songIndex");
     const submitButton = document.getElementById("submitButton");
 
+    //cuando llega una lista se inicializa con la primera cancion de la pagina
 playsong(mscact); // se inicializa la gramola con la primera cancion de la primera lista
 
+//pop up para pedir al usuario el nombre de la lista, se manda a un formulario
 afegirlista.addEventListener("click",mostrarPopUp);
 function mostrarPopUp() {
     var nombre = prompt("Que nombre tendra la lista");
@@ -34,9 +36,8 @@ function mostrarPopUp() {
 
 
 
-
+//se encarga del volumen de la musica
 music.addEventListener("timeupdate", function() {
-
     music.volume = volumen.value;
     volumen.addEventListener("input", function () {
         music.volume = volumen.value;
@@ -118,7 +119,7 @@ function showSongs(musica) {
         // Agregar un evento de clic para mostrar información detallada
         listItem.addEventListener("click", () => {
             mscact = index;
-            playsong(mscact);
+            playsong(mscact); //manda el index de la cancion que se tiene que reproducir
         });
 
         // Agregar el elemento de la lista completo a la lista de canciones
@@ -128,11 +129,12 @@ function showSongs(musica) {
 
 // controles del reproductor
 function playsong(index){
+    //recibe el index de la cancion para reproducir-la
     songdur.textContent="0:00"; 
  //se define en que playlist esta la cancion que se va a reproducir
     const mscobj = musica.songs[index];  //se escoge la array que contiene la cancion
     cover.src= mscobj.cover;
-    music.src =mscobj.url;
+    music.src =mscobj.url;              //escojemos la ubicacion del archivo
     artista.textContent = mscobj.artist;
     musicnme.textContent = mscobj.title;
     music.addEventListener('loadedmetadata', () => {
@@ -146,6 +148,8 @@ function playsong(index){
 
 };
 pausebtn.addEventListener("click",playpause);
+
+//esta funcion se encarga de cambiar la imagen a play o pausa a demas de pausar o reproducir la cancion
 function playpause(){
     if (playorpause){
         imgChange.src = "./img/pauseb.png"
