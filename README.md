@@ -1,2 +1,7 @@
 # Gramola
-Repositori per projecte la gramola
+Repositori de la gramola
+
+
+Luis Arauz Ortiz
+
+2nDAW
