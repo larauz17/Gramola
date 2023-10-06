@@ -137,10 +137,6 @@ div#llistamusica{
     width: 20vw;
     height: 10vw;
 }
-
-
- /* Resto de estilos CSS que ya tenías */
-
 /* Estilo para el contenedor de la lista de reproducción activa */
 #playlist-act {
     margin-top: auto;
