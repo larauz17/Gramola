@@ -1,11 +1,4 @@
 {
     "name": "Pop",
-    "songs": [
-        {
-            "title": "Dancin",
-            "artist": "Aaron-Smith",
-            "url": ".\/src\/Aaron-Smith-Dancin.mp3",
-            "cover": ".\/img\/dancin.jpg"
-        }
-    ]
+    "songs": []
 }
