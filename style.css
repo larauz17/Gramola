@@ -41,7 +41,7 @@ margin: 0;}
     margin-right: 10px; /* Espacio entre las listas de reproducción */
   }  
 div.Art-Box {
-  height: 470px;
+  height: 80vh;
   width: 100%;
   background-color: #333333;
   display: flex;
